@@ -27,4 +27,34 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * This users has many discussions
+     *
+     * @return void
+     */
+    public function discussions()
+    {
+        return $this->hasMany(Discussion::class, 'user_id', 'id');
+    }
+
+    /**
+     * This users has many replies
+     *
+     * @return void
+     */
+    public function replies()
+    {
+        return $this->hasMany(Reply::class, 'user_id', 'id');
+    }
+
+    /**
+     * This users has many votes
+     *
+     * @return void
+     */
+    public function votes()
+    {
+        return $this->morphMany(Votes::class, 'voteable');
+    }
 }
