@@ -23,18 +23,8 @@
                                             <li class="">
                                                 <a href="{{ url('/') }}">Home</a>
                                             </li>
-                                            <li class="has_dropdown">
-                                                <a href="index.html">Channels</a>
-                                                <div class="dropdown dropdown--menu">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#1">Channel 1</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#2">Channel 2</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                            <li class="">
+                                                <a href="{{ route('admin.channel.index') }}">Channel</a>
                                             </li>
                                         </ul>
                                     </div>

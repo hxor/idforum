@@ -21,10 +21,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'forum'], function () {
     Route::get('/', function () {
-        return view('pages.forum.show');
+        return view('pages.public.forum.show');
     })->name('forum.show');
 
     Route::get('/create', function () {
-        return view('pages.forum.create');
+        return view('pages.public.forum.create');
     })->name('forum.create');
+});
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::resource('channel', 'ChannelController');
 });
