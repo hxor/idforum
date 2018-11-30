@@ -1,91 +1,93 @@
 @extends('layouts.app')
 
+@section('title')
+    Register
+@endsection
+
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+<!--================================
+        START REGISTER AREA
+=================================-->
+<section class="login_area section--padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <form method="POST" action="{{ route('register') }}">
+                    @csrf
+                    <div class="cardify login">
+                        <div class="login--header">
+                            <h3>Create Your Account</h3>
+                            <p>Please fill the following fields with appropriate information to register a IDForum account.
+                            </p>
+                        </div>
+                        <!-- end .login_header -->
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
-
+                        <div class="login--form">
+                            <div class="form-group">
+                                <label for="urname">{{ __('Name') }}</label>
+                                <input id="urname" name="name" type="text" class="text_field form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="Enter your Name" value="{{ old('name') }}" required autofocus>
                                 @if ($errors->has('name'))
-                                    <span class="invalid-feedback" role="alert">
+                                    <div class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
+                                    </div>
                                 @endif
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
+                            <div class="form-group">
+                                <label for="email">{{ __('Email') }}</label>
+                                <input type="email" name="email" id="email" class="text_field form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Enter your email address" value="{{ old('email') }}" required>
                                 @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
+                                    <div class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                    </div>
                                 @endif
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required>
-
+                            <div class="form-group">
+                                <label for="user_name">{{ __('Username') }}</label>
+                                <input name="username" id="user_name" type="text" class="text_field form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" placeholder="Enter your username..." value="{{ old('username') }}" required>
                                 @if ($errors->has('username'))
-                                    <span class="invalid-feedback" role="alert">
+                                    <div class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('username') }}</strong>
-                                    </span>
+                                    </div>
                                 @endif
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
+                            <div class="form-group">
+                                <label for="password">{{ __('Password') }}</label>
+                                <input name="password" id="password" type="password" class="text_field form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Enter your password..." required>
                                 @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
+                                    <div class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                    </div>
                                 @endif
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <div class="form-group">
+                                <label for="con_pass">{{ __('Confirm Password') }}</label>
+                                <input name="password_confirmation" id="con_pass" type="password" class="text_field form-control" placeholder="Confirm password" required>
+                            </div>
 
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            <button class="btn btn--md register_btn btn-primary" type="submit">Register Now</button>
+
+                            <div class="login_assist">
+                                <p>Already have an account?
+                                    <a href="{{ route('login') }}">Login</a>
+                                </p>
                             </div>
                         </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                        <!-- end .login--form -->
+                    </div>
+                    <!-- end .cardify -->
+                </form>
             </div>
+            <!-- end .col-md-6 -->
         </div>
+        <!-- end .row -->
     </div>
-</div>
+    <!-- end .container -->
+</section>
+<!--================================
+        END REGISTER AREA
+=================================-->
 @endsection

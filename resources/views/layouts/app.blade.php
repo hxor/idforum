@@ -1,80 +1,74 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+
+    <!-- viewport meta -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="IDStack Forum Tutorial">
+    <meta name="keywords" content="idstack, online, course">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- Favicon Icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon-32x32.png') }}">
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <title>@yield('title', 'IDForum') - Digital Forum</title>
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <!-- endinject -->
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+
+<body class="home1 mutlti-vendor">
+
+    <!-- ================================
+    START MENU AREA
+    ================================= -->
+    <!-- start menu-area -->
+    @include('layouts.partials._menu')
+    <!-- end /.menu-area -->
+    <!--================================
+    END MENU AREA
+    =================================-->
+
+    @yield('content')
+
+    <!--================================
+        Start Footer
+    =================================-->
+    <footer class="footer-area footer--light">
+        <div class="mini-footer">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="copyright-text">
+                            <p>&copy; 2018
+                                <a href="#">IDForum</a>. All rights reserved. Created by
+                                <a href="https://idstack.net">IDStack</a>
+                            </p>
+                        </div>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                @if (Route::has('register'))
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                @endif
-                            </li>
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+                        <div class="go_top">
+                            <span class="icon-arrow-up"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
+        </div>
+    </footer>
+    <!--================================
+        End Footer
+    =================================-->
 
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+    <!-- inject:js -->
+    <script src="{{ asset('assets/js/plugins.min.js') }}"></script>
+    <script src="{{ asset('assets/js/script.min.js') }}"></script>
+    <!-- endinject -->
 </body>
 </html>

@@ -12,9 +12,19 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'forum'], function () {
+    Route::get('/', function () {
+        return view('pages.forum.show');
+    })->name('forum.show');
+
+    Route::get('/create', function () {
+        return view('pages.forum.create');
+    })->name('forum.create');
+});

@@ -1,65 +1,71 @@
 @extends('layouts.app')
 
+@section('title')
+    Reset Password
+@endsection
+
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+<!--================================
+            START CONTENT AREA
+=================================-->
+<section class="pass_recover_area section--padding">
+    <div class="container">
+        <div class="row" style="padding-bottom: 500px;">
+            <div class="col-lg-6 offset-lg-3">
+                <form method="POST" action="{{ route('password.update') }}">
+                    <div class="cardify recover_pass">
+                        <div class="login--header">
+                            <p>Please enter the email address for your account and create new password.</p>
+                        </div>
+                        <!-- end .login_header -->
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
-                        @csrf
+                        <div class="login--form">
+                            @csrf
+                            <input type="hidden" name="token" value="{{ $token }}">
 
-                        <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" required autofocus>
-
+                            <div class="form-group">
+                                <label for="email_ad">{{ __('E-Mail Address') }}</label>
+                                <input id="email_ad" name="email" type="text" class="text_field form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                        placeholder="Enter your email address" value="{{ $email ?? old('email') }}" required autofocus>
                                 @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
+                                    <div class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                    </div>
                                 @endif
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
+                            <div class="form-group">
+                                <label for="password">{{ __('Password') }}</label>
+                                <input id="password" name="password" type="password" class="text_field form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                        placeholder="Enter your password..." required>
                                 @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
+                                    <div class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                    </div>
                                 @endif
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            <div class="form-group">
+                                <label for="con_pass">{{ __('Confirm Password') }}</label>
+                                <input id="con_pass" name="password_confirmation" type="password" class="text_field" placeholder="Confirm password" required>
                             </div>
-                        </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
-                            </div>
+                            <button class="btn btn--md register_btn btn-primary" type="submit">Reset Password
+                            </button>
                         </div>
-                    </form>
-                </div>
+                        <!-- end .login--form -->
+                    </div>
+                    <!-- end .cardify -->
+                </form>
             </div>
+            <!-- end .col-md-6 -->
         </div>
+        <!-- end .row -->
     </div>
-</div>
+    <!-- end .container -->
+</section>
+<!--================================
+        END CONTENT AREA
+=================================-->
 @endsection
