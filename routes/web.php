@@ -11,16 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'ForumController@index');
 
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'forum'], function () {
-    Route::get('/', function () {
+    Route::get('/', 'ForumController@index');
+
+    Route::get('/show', function () {
         return view('pages.public.forum.show');
     })->name('forum.show');
 
