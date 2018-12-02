@@ -85,14 +85,7 @@
                             </div>
                             <!-- Ends: .dwqa-questions-list -->
                             <div class="dwqa-questions-footer">
-                                <div class="dwqa-pagination">
-                                    <span class="dwqa-page-numbers dwqa-current">1</span>
-                                    <a class="dwqa-page-numbers" href="#">2</a>
-                                    <a class="dwqa-page-numbers" href="#">3</a>
-                                    <span class="dwqa-page-numbers dwqa-dots">…</span>
-                                    <a class="dwqa-page-numbers" href="#">5</a>
-                                    <a class="dwqa-next dwqa-page-numbers" href="#">Next »</a>
-                                </div>
+                                {{ $discussions->links('vendor.pagination.default') }}
                             </div>
                             <!-- Ends: .dwqa-questions-footer -->
                         </div>
